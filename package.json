@@ -1,0 +1,23 @@
+{
+  "name": "microservices-example",
+  "version": "1.0.0",
+  "description": "example of creating node microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlennChon/microservices-example.git"
+  },
+  "keywords": [
+    "microservices",
+    "example"
+  ],
+  "author": "Glenn Chon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GlennChon/microservices-example/issues"
+  },
+  "homepage": "https://github.com/GlennChon/microservices-example#readme"
+}
