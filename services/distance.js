@@ -10,36 +10,44 @@ const validateLatLng = (lat, lng) => {
   return message;
 };
 
+Number.prototype.toRadians = function () {
+  return this.valueOf() * (Math.PI / 180);
+};
+
 const distance = {
   find: function (req, res) {
-    let coord1ErrorMessage = validateLatLng(lat1, lng1);
-    let coord2ErrorMessage = validateLatLng(lat2, lng2);
-    if (coord1ErrorMessage || coord2ErrorMessage) {
-      let message;
-      if (coord1ErrorMessage) {
-        message += ` +Coord1Error: ${coord1ErrorMessage}`;
-      }
-      if (coord2ErrorMessage) {
-        message += ` +Coord2Error: ${coord2ErrorMessage}`;
-      }
-      let error = new Error(message);
-      res.send(error);
-    }
-    const lat1 = req.params.lat1;
-    const lng1 = req.params.lng1;
-    const lat2 = req.params.lat2;
-    const lng2 = req.params.lng2;
+    const lat1 = parseFloat(req.params.lat1);
+    const lng1 = parseFloat(req.params.lng1);
+    const lat2 = parseFloat(req.params.lat2);
+    const lng2 = parseFloat(req.params.lng2);
 
     const RKm = 6371; // Earth radius in km
     const RMi = 3950; // Earth radius in mi
 
+    console.log(lat1, lng1, lat2, lng2, RKm, RMi);
+    // validate coordinates
+    let coord1ErrorMessage = validateLatLng(lat1, lng1);
+    let coord2ErrorMessage = validateLatLng(lat2, lng2);
+    if (coord1ErrorMessage || coord2ErrorMessage) {
+      let errorObject = {};
+      if (typeof coord1ErrorMessage !== "undefined") {
+        errorObject.coord1Error = coord1ErrorMessage;
+      }
+      if (typeof coord2ErrorMessage !== "undefined") {
+        errorObject.coord2Error = coord2ErrorMessage;
+      }
+      res.status(400);
+      res.send(errorObject);
+    }
+
+    // calculate distance
     const x1 = lat1 - lat2;
     const x2 = lng1 - lng2;
     const dLat = x1.toRadians();
     const dLng = x2.toRadians();
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(lat.toRadians()) *
+      Math.cos(lat2.toRadians()) *
         Math.cos(lat1.toRadians()) *
         Math.sin(dLng / 2) *
         Math.sin(dLng / 2);
