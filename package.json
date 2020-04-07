@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/GlennChon/microservices-example/issues"
   },
-  "homepage": "https://github.com/GlennChon/microservices-example#readme"
+  "homepage": "https://github.com/GlennChon/microservices-example#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
 }
