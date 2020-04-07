@@ -1,7 +1,7 @@
 {
   "name": "microservices-example",
   "version": "1.0.0",
-  "description": "example of creating node microservices",
+  "description": "Example coordinate distance calculator microservice",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/GlennChon/microservices-example#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "request": "^2.88.2"
+    "express": "^4.17.1"
   }
 }
